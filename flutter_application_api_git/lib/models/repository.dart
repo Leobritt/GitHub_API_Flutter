@@ -15,10 +15,11 @@ class Repository {
   //Factory  transformar um json no obj Repository
   factory Repository.fromJson(Map<String, dynamic> json) {
     return Repository(
-        id: json['id'],
-        name: json['title'],
-        description: json['description'],
-        stars: json['stargazers_count'],
-        url: json['html_url']);
+      id: json['id'],
+      name: json['name'],
+      description: json['description'],
+      stars: json['stargazers_count'],
+      url: json['html_url'],
+    );
   }
 }

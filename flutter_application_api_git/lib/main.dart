@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_api_git/screens/home.dart';
-import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
