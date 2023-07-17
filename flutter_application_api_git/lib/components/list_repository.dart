@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_api_git/models/repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ListRepository extends StatelessWidget {
   const ListRepository({super.key, required this.repositoriesList});
@@ -24,8 +25,15 @@ class ListRepository extends StatelessWidget {
                 ButtonBar(
                   children: <Widget>[
                     TextButton(
-                      onPressed: () {
-                        // Ação do botão
+                      onPressed: () async {
+                        var url = repositoriesList[index].url;
+                        //usano url launcher para abrir uma url
+
+                        // ignore: deprecated_member_use
+                        if (await canLaunch(url)) {
+                          // ignore: deprecated_member_use
+                          await launch(url);
+                        }
                       },
                       child: const Text('Abrir Repositorio'),
                     ),

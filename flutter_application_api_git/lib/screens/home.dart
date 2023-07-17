@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_api_git/components/button.dart';
 import 'package:flutter_application_api_git/components/list_repository.dart';
+import 'package:flutter_application_api_git/components/repository_form.dart';
 import 'package:flutter_application_api_git/models/repository.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,26 +15,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var text = "hello git!";
   var _repositories = <Repository>[]; // Lista de objetos Repository
+  var _loading = false;
 
   //funçao de busca com await fazendo uma req get
-  Future<void> searchRepository() async {
+  Future<void> searchRepository(String repo) async {
     var response = await http.get(Uri.parse(
-        "https://api.github.com/search/repositories?q=flutter&page=0&per_page=10"));
+        "https://api.github.com/search/repositories?q=$repo&page=0&per_page=10"));
 
     //convertendo uma string Json em repository
     var data = jsonDecode(response.body);
 
     setState(() {
+      _loading = false;
       //transformando em lista
       //usando o map para iteirar e retornar um item
       _repositories =
           (data['items'] as List).map((e) => Repository.fromJson(e)).toList();
       //print
-      _repositories.forEach((element) {
-        print(element.name);
-      });
     });
   }
 
@@ -43,24 +41,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: const Text('Start'),
+        title: const Center(child: Text('API GIT')),
       ),
       body: Container(
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
-            Text(
-              text,
-              style: const TextStyle(
-                fontSize: 24.0,
-              ),
-            ),
-            //class button
-            Button(
-              onPressed: searchRepository,
-              text: 'clica aqui',
-            ),
-
+            //chamando o search repository fução da class repository_form
+            FormRepository(onSearch: searchRepository, loading: _loading),
             Expanded(
               child: _repositories.isNotEmpty
                   //chamando o método ListRepository e passando
