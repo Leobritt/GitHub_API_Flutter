@@ -6,7 +6,6 @@ class FormRepository extends StatefulWidget {
   const FormRepository(
       {super.key, required this.onSearch, required bool loading});
 
-  //
   final Function onSearch;
 
   @override

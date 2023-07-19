@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter APi Git',
+      title: 'Flutter API Git',
       theme: ThemeData(
         primaryColor: Colors.blueGrey,
         useMaterial3: true,

@@ -17,7 +17,7 @@ class Repository {
     return Repository(
       id: json['id'],
       name: json['name'],
-      description: json['description'],
+      description: json['description'] ?? '',
       stars: json['stargazers_count'],
       url: json['html_url'],
     );

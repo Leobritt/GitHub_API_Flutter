@@ -10,8 +10,6 @@ class HomePage extends StatefulWidget {
 
   @override
   State<HomePage> createState() => _HomePageState();
-
-  //funcao de pesquisa e n tem retorno
 }
 
 class _HomePageState extends State<HomePage> {
@@ -32,7 +30,6 @@ class _HomePageState extends State<HomePage> {
       //usando o map para iteirar e retornar um item
       _repositories =
           (data['items'] as List).map((e) => Repository.fromJson(e)).toList();
-      //print
     });
   }
 

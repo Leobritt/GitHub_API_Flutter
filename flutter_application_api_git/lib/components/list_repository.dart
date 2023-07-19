@@ -35,7 +35,7 @@ class ListRepository extends StatelessWidget {
                           await launch(url);
                         }
                       },
-                      child: const Text('Abrir Repositorio'),
+                      child: const Text('Open repository'),
                     ),
                   ],
                 ),
